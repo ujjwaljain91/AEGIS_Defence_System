@@ -1,0 +1,229 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #080b12;
+  --color-surface-1: #0e1520;
+  --color-surface-2: #101828;
+  --color-surface-3: #0c1625;
+  --color-carbon: #121212;
+  --color-silver: #E5E5E5;
+  --color-platinum: #A0A0A0;
+  --color-electric: #3B9EFF;
+  --font-sans: var(--font-rajdhani), 'Rajdhani', sans-serif;
+  --font-mono: var(--font-space-mono), 'Space Mono', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: #080b12;
+  color: #fff;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-mono);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: rgba(0, 122, 255, 0.3);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080b12;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a2030;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3B9EFF;
+}
+
+/* ─── Animations ─── */
+
+@keyframes pulse-blue {
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.4);
+  }
+
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 8px 2px rgba(0, 122, 255, 0.2);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes grid-move {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(40px, 40px);
+  }
+}
+
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-pulse-blue {
+  animation: pulse-blue 2.5s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 10s linear infinite;
+}
+
+.animate-grid {
+  animation: grid-move 25s linear infinite;
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes scan {
+  0% {
+    top: 0%;
+  }
+
+  100% {
+    top: 100%;
+  }
+}
+
+.animate-scan {
+  animation: scan 8s linear infinite;
+}
+
+/* ─── Glass Effects ─── */
+
+.glass {
+  background: rgba(120, 160, 220, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(100, 140, 200, 0.1);
+}
+
+.glass-strong {
+  background: rgba(120, 160, 220, 0.06);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(100, 140, 200, 0.14);
+}
+
+.glass-card {
+  background: rgba(120, 160, 220, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(100, 140, 200, 0.08);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.glass-card:hover {
+  background: rgba(120, 160, 220, 0.07);
+  border-color: rgba(59, 158, 255, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(59, 158, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ─── Text Utilities ─── */
+
+.text-gradient {
+  background: linear-gradient(180deg, #FFFFFF 0%, #B8C0CC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-strong {
+  background: linear-gradient(180deg, #FFFFFF 0%, #8892A0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Backgrounds ─── */
+
+.tactical-grid {
+  background-image:
+    linear-gradient(rgba(59, 158, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 158, 255, 0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ─── Label Style ─── */
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #3B9EFF;
+}
