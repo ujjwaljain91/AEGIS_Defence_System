@@ -21,7 +21,7 @@ export default function Footer() {
                 position: "relative",
                 overflow: "hidden",
             }}
-            className="pt-20 pb-12 px-6 md:px-12"
+            className="pt-24 pb-12 px-8 md:px-12"
         >
             {/* Subtle top glow */}
             <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: "800px", height: "200px", background: "radial-gradient(ellipse, rgba(59,158,255,0.025) 0%, transparent 70%)", pointerEvents: "none" }} />

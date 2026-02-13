@@ -71,6 +71,7 @@ export default function SpotlightCTA() {
                         backdropFilter: "blur(40px)",
                         border: "1px solid rgba(0,122,255,0.1)",
                         boxShadow: "0 0 100px rgba(0,122,255,0.03), inset 0 1px 0 rgba(255,255,255,0.04)",
+                        padding: "60px 24px",
                     }}
                 >
                     {/* Inner top glow */}

@@ -95,7 +95,7 @@ function AssetPanel({ asset, index }: { asset: typeof assets[number]; index: num
                     justifyContent: "center",
                     height: "100%",
                     textAlign: "center" as const,
-                    padding: "24px",
+                    padding: "32px",
                     y: contentY,
                 }}
             >
@@ -202,8 +202,8 @@ export default function ScrollytellingSection() {
                     alignItems: "center",
                     justifyContent: "center",
                     textAlign: "center" as const,
-                    paddingLeft: "24px",
-                    paddingRight: "24px",
+                    paddingLeft: "32px",
+                    paddingRight: "32px",
                 }}
             >
                 <motion.p

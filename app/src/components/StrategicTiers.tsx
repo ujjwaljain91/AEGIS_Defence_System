@@ -72,7 +72,7 @@ export default function StrategicTiers() {
                 background: "linear-gradient(180deg, #080b12 0%, #101828 40%, #101828 60%, #080b12 100%)",
                 overflow: "hidden",
             }}
-            className="py-20 px-6 md:py-40 md:px-6"
+            className="py-24 px-8 md:py-40 md:px-12"
         >
             {/* Atmospheric elements */}
             <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "900px", height: "900px", borderRadius: "50%", background: "radial-gradient(circle, rgba(59,158,255,0.08) 0%, transparent 60%)", pointerEvents: "none", filter: "blur(40px)" }} />
@@ -150,7 +150,7 @@ export default function StrategicTiers() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.1 }}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-5 items-start"
+                    className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 items-start"
                 >
                     {tiers.map((tier) => (
                         <motion.div
