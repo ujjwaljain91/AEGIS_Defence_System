@@ -33,7 +33,6 @@ export default function Footer() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.1 }}
-                    viewport={{ once: true, amount: 0.1 }}
                     className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12 mb-20 text-center md:text-left"
                 >
                     {/* Brand Column */}
@@ -130,21 +129,16 @@ export default function Footer() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, delay: 0.3 }}
-                    style={{
-                        borderTop: "1px solid rgba(100,140,200,0.06)",
-                        paddingTop: "32px",
-                        display: "flex",
-                        flexWrap: "wrap" as const,
-                        alignItems: "center",
+                    className="border-t border-[rgba(100,140,200,0.06)] pt-8 flex flex-col md:flex-row items-center justify-center md:justify-between gap-4"
                 >
-                    <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.35em", color: "rgba(140,155,180,0.5)", width: "100%", textAlign: "center" }}>
+                    <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.35em", color: "rgba(140,155,180,0.5)" }} className="text-center md:text-left">
                         © 2026 AEGIS DEFENSE SYSTEMS. ALL RIGHTS RESERVED.
                     </p>
-                    <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.35em", color: "rgba(140,155,180,0.4)", width: "100%", textAlign: "center" }}>
+                    <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.35em", color: "rgba(140,155,180,0.4)" }} className="text-center md:text-right">
                         CLASSIFIED • DISTRIBUTION RESTRICTED
                     </p>
                 </motion.div>
-        </div>
+            </div>
         </footer >
     );
 }
