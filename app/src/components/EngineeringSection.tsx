@@ -105,140 +105,139 @@ export default function EngineeringSection() {
                     maxWidth: "1100px",
                     margin: "0 auto",
                 }}
-                }}
-            className="py-24 px-8 md:py-40 md:px-12"
+                className="py-24 px-8 md:py-40 md:px-12"
             >
-            {/* ─── Section Header ─── */}
-            <div
-                style={{
-                    textAlign: "center" as const,
-                    marginBottom: "100px",
-                    display: "flex",
-                    flexDirection: "column" as const,
-                    alignItems: "center",
-                }}
-            >
-                {/* Radar dot */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.5, filter: "blur(10px)" }}
-                    whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, type: "spring", stiffness: 200, damping: 20 }}
+                {/* ─── Section Header ─── */}
+                <div
                     style={{
-                        width: "48px",
-                        height: "48px",
-                        borderRadius: "50%",
-                        border: "1px solid rgba(0,122,255,0.2)",
+                        textAlign: "center" as const,
+                        marginBottom: "100px",
                         display: "flex",
+                        flexDirection: "column" as const,
                         alignItems: "center",
-                        justifyContent: "center",
-                        marginBottom: "28px",
                     }}
                 >
+                    {/* Radar dot */}
                     <motion.div
-                        animate={{ boxShadow: ["0 0 12px rgba(0,122,255,0.3)", "0 0 24px rgba(0,122,255,0.6)", "0 0 12px rgba(0,122,255,0.3)"] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                        style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#007AFF" }}
-                    />
-                </motion.div>
-
-                <motion.p
-                    initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
-                    className="section-label"
-                >
-                    Engineering Mastery
-                </motion.p>
-
-                <motion.h2
-                    initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                    className="text-gradient"
-                    style={{ marginTop: "24px", fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 700, lineHeight: 1.15, fontFamily: "var(--font-mono)", textAlign: "center" as const }}
-                >
-                    Forged from Precision.
-                    <br />
-                    Powered by Intelligence.
-                </motion.h2>
-
-                <motion.p
-                    initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
-                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7, delay: 0.2 }}
-                    style={{ marginTop: "20px", maxWidth: "520px", fontSize: "17px", lineHeight: 1.7, color: "rgba(180,190,210,0.7)", textAlign: "center" as const }}
-                >
-                    Four pillars of technological superiority driving the future of integrated defense.
-                </motion.p>
-
-                {/* Decorative line */}
-                <motion.div
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    style={{ marginTop: "36px", width: "60px", height: "1px", background: "linear-gradient(90deg, transparent, #3B9EFF, transparent)", transformOrigin: "center" }}
-                />
-            </div>
-
-            {/* ─── Cards Grid — stagger ─── */}
-            <motion.div
-                variants={staggerContainer}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10"
-            >
-                {capabilities.map((cap) => (
-                    <motion.div
-                        key={cap.title}
-                        variants={staggerItem}
-                        whileHover={{ y: -6, transition: { type: "spring", stiffness: 300, damping: 25 } }}
-                        className="glass-card"
+                        initial={{ opacity: 0, scale: 0.5, filter: "blur(10px)" }}
+                        whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, type: "spring", stiffness: 200, damping: 20 }}
                         style={{
-                            borderRadius: "20px",
-                            padding: "44px",
+                            width: "48px",
+                            height: "48px",
+                            borderRadius: "50%",
+                            border: "1px solid rgba(0,122,255,0.2)",
                             display: "flex",
-                            flexDirection: "column" as const,
                             alignItems: "center",
-                            textAlign: "center" as const,
-                            position: "relative",
-                            overflow: "hidden",
-                            cursor: "default",
+                            justifyContent: "center",
+                            marginBottom: "28px",
                         }}
                     >
-                        {/* Card subtle top glow */}
-                        <div style={{ position: "absolute", top: "-40px", left: "50%", transform: "translateX(-50%)", width: "200px", height: "120px", background: "radial-gradient(ellipse, rgba(0,122,255,0.04) 0%, transparent 70%)", pointerEvents: "none" }} />
-
-                        {/* Icon */}
                         <motion.div
-                            whileHover={{ rotate: 8 }}
-                            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                            animate={{ boxShadow: ["0 0 12px rgba(0,122,255,0.3)", "0 0 24px rgba(0,122,255,0.6)", "0 0 12px rgba(0,122,255,0.3)"] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                            style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#007AFF" }}
+                        />
+                    </motion.div>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+                        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.7 }}
+                        className="section-label"
+                    >
+                        Engineering Mastery
+                    </motion.p>
+
+                    <motion.h2
+                        initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+                        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                        className="text-gradient"
+                        style={{ marginTop: "24px", fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 700, lineHeight: 1.15, fontFamily: "var(--font-mono)", textAlign: "center" as const }}
+                    >
+                        Forged from Precision.
+                        <br />
+                        Powered by Intelligence.
+                    </motion.h2>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
+                        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.7, delay: 0.2 }}
+                        style={{ marginTop: "20px", maxWidth: "520px", fontSize: "17px", lineHeight: 1.7, color: "rgba(180,190,210,0.7)", textAlign: "center" as const }}
+                    >
+                        Four pillars of technological superiority driving the future of integrated defense.
+                    </motion.p>
+
+                    {/* Decorative line */}
+                    <motion.div
+                        initial={{ scaleX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        style={{ marginTop: "36px", width: "60px", height: "1px", background: "linear-gradient(90deg, transparent, #3B9EFF, transparent)", transformOrigin: "center" }}
+                    />
+                </div>
+
+                {/* ─── Cards Grid — stagger ─── */}
+                <motion.div
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.15 }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10"
+                >
+                    {capabilities.map((cap) => (
+                        <motion.div
+                            key={cap.title}
+                            variants={staggerItem}
+                            whileHover={{ y: -6, transition: { type: "spring", stiffness: 300, damping: 25 } }}
+                            className="glass-card"
                             style={{
-                                width: "60px", height: "60px", borderRadius: "16px",
-                                background: "rgba(0,122,255,0.07)", border: "1px solid rgba(0,122,255,0.15)",
-                                display: "flex", alignItems: "center", justifyContent: "center",
-                                color: "#3B9EFF", marginBottom: "28px", position: "relative", zIndex: 2,
+                                borderRadius: "20px",
+                                padding: "44px",
+                                display: "flex",
+                                flexDirection: "column" as const,
+                                alignItems: "center",
+                                textAlign: "center" as const,
+                                position: "relative",
+                                overflow: "hidden",
+                                cursor: "default",
                             }}
                         >
-                            {cap.icon}
+                            {/* Card subtle top glow */}
+                            <div style={{ position: "absolute", top: "-40px", left: "50%", transform: "translateX(-50%)", width: "200px", height: "120px", background: "radial-gradient(ellipse, rgba(0,122,255,0.04) 0%, transparent 70%)", pointerEvents: "none" }} />
+
+                            {/* Icon */}
+                            <motion.div
+                                whileHover={{ rotate: 8 }}
+                                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                style={{
+                                    width: "60px", height: "60px", borderRadius: "16px",
+                                    background: "rgba(0,122,255,0.07)", border: "1px solid rgba(0,122,255,0.15)",
+                                    display: "flex", alignItems: "center", justifyContent: "center",
+                                    color: "#3B9EFF", marginBottom: "28px", position: "relative", zIndex: 2,
+                                }}
+                            >
+                                {cap.icon}
+                            </motion.div>
+
+                            <h3 style={{ fontFamily: "var(--font-mono)", fontSize: "18px", fontWeight: 700, color: "#fff", lineHeight: 1.3, marginBottom: "14px", letterSpacing: "0.02em", position: "relative", zIndex: 2 }}>
+                                {cap.title}
+                            </h3>
+
+                            <p style={{ fontSize: "15px", lineHeight: 1.75, color: "rgba(180,190,210,0.7)", maxWidth: "360px", position: "relative", zIndex: 2 }}>
+                                {cap.description}
+                            </p>
                         </motion.div>
-
-                        <h3 style={{ fontFamily: "var(--font-mono)", fontSize: "18px", fontWeight: 700, color: "#fff", lineHeight: 1.3, marginBottom: "14px", letterSpacing: "0.02em", position: "relative", zIndex: 2 }}>
-                            {cap.title}
-                        </h3>
-
-                        <p style={{ fontSize: "15px", lineHeight: 1.75, color: "rgba(180,190,210,0.7)", maxWidth: "360px", position: "relative", zIndex: 2 }}>
-                            {cap.description}
-                        </p>
-                    </motion.div>
-                ))}
-            </motion.div>
-        </div>
+                    ))}
+                </motion.div>
+            </div>
 
 
         </section >

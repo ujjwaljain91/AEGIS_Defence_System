@@ -11,7 +11,7 @@ export default function SpotlightCTA() {
                 background: "linear-gradient(180deg, #080b12 0%, #0c1625 50%, #080b12 100%)",
                 overflow: "hidden",
             }}
-            className="py-20 px-6 md:py-40 md:px-6"
+            className="py-20 px-8 md:py-40 md:px-6"
         >
             {/* Large ambient glow */}
             <motion.div

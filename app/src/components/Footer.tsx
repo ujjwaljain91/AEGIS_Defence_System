@@ -36,7 +36,7 @@ export default function Footer() {
                     className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12 mb-20 text-center md:text-left"
                 >
                     {/* Brand Column */}
-                    <motion.div variants={staggerItem} className="col-span-1 md:col-span-1 flex flex-col items-center md:items-start ml-2 md:ml-0">
+                    <motion.div variants={staggerItem} className="col-span-1 md:col-span-1 flex flex-col items-center md:items-start">
                         <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
                             <motion.div
                                 whileHover={{ rotate: 360 }}
