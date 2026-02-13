@@ -33,10 +33,11 @@ export default function Footer() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.1 }}
-                    className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-20"
+                    viewport={{ once: true, amount: 0.1 }}
+                    className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12 mb-20 text-center md:text-left"
                 >
                     {/* Brand Column */}
-                    <motion.div variants={staggerItem} className="col-span-2 md:col-span-1">
+                    <motion.div variants={staggerItem} className="col-span-1 md:col-span-1 flex flex-col items-center md:items-start ml-2 md:ml-0">
                         <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
                             <motion.div
                                 whileHover={{ rotate: 360 }}
@@ -135,18 +136,15 @@ export default function Footer() {
                         display: "flex",
                         flexWrap: "wrap" as const,
                         alignItems: "center",
-                        justifyContent: "space-between",
-                        gap: "16px",
-                    }}
                 >
-                    <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.35em", color: "rgba(140,155,180,0.5)" }}>
+                    <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.35em", color: "rgba(140,155,180,0.5)", width: "100%", textAlign: "center" }}>
                         © 2026 AEGIS DEFENSE SYSTEMS. ALL RIGHTS RESERVED.
                     </p>
-                    <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.35em", color: "rgba(140,155,180,0.4)" }}>
+                    <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.35em", color: "rgba(140,155,180,0.4)", width: "100%", textAlign: "center" }}>
                         CLASSIFIED • DISTRIBUTION RESTRICTED
                     </p>
                 </motion.div>
-            </div>
-        </footer>
+        </div>
+        </footer >
     );
 }
