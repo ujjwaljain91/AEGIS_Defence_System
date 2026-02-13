@@ -190,7 +190,8 @@ export default function EngineeringSection() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.15 }}
-                    style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" }}
+                    className="grid grid-cols-1 md:grid-cols-2"
+                    style={{ gap: "20px" }}
                 >
                     {capabilities.map((cap) => (
                         <motion.div
@@ -238,14 +239,6 @@ export default function EngineeringSection() {
                     ))}
                 </motion.div>
             </div>
-
-            <style jsx>{`
-        @media (max-width: 768px) {
-          div[style*="grid-template-columns: repeat(2"] {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
         </section>
     );
 }
