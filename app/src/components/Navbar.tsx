@@ -12,12 +12,22 @@ const navLinks = [
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 80);
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    // Lock body scroll when menu is open
+    useEffect(() => {
+        if (mobileMenuOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "unset";
+        }
+    }, [mobileMenuOpen]);
 
     return (
         <header
@@ -40,8 +50,8 @@ export default function Navbar() {
                     borderRadius: scrolled ? 0 : 9999,
                     paddingTop: scrolled ? 14 : 12,
                     paddingBottom: scrolled ? 14 : 12,
-                    paddingLeft: scrolled ? 48 : 32,
-                    paddingRight: scrolled ? 48 : 32,
+                    paddingLeft: scrolled ? 24 : 32,
+                    paddingRight: scrolled ? 24 : 32,
                 }}
                 transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="glass-strong"
@@ -51,6 +61,7 @@ export default function Navbar() {
                     gap: "40px",
                     pointerEvents: "auto",
                     maxWidth: scrolled ? "100%" : undefined,
+                    justifyContent: "space-between", // Ensure space-between for mobile layout
                 }}
             >
                 {/* Logo */}
@@ -62,7 +73,10 @@ export default function Navbar() {
                         gap: "12px",
                         textDecoration: "none",
                         flexShrink: 0,
+                        zIndex: 60, // Ensure logo is above mobile menu
+                        position: "relative",
                     }}
+                    onClick={() => setMobileMenuOpen(false)}
                 >
                     <div
                         style={{
@@ -99,10 +113,10 @@ export default function Navbar() {
                     </span>
                 </a>
 
-                {/* Nav Links (centered) */}
+                {/* Desktop Nav Links (centered) */}
                 <div
+                    className="hidden md:flex"
                     style={{
-                        display: "flex",
                         alignItems: "center",
                         gap: "32px",
                         flex: 1,
@@ -134,11 +148,11 @@ export default function Navbar() {
                     ))}
                 </div>
 
-                {/* CTA — INQUIRE button */}
+                {/* CTA — INQUIRE button (Desktop) */}
                 <a
                     href="#contact"
+                    className="hidden md:inline-flex"
                     style={{
-                        display: "inline-flex",
                         alignItems: "center",
                         justifyContent: "center",
                         background: "#fff",
@@ -164,7 +178,114 @@ export default function Navbar() {
                 >
                     INQUIRE
                 </a>
+
+                {/* Mobile Menu Toggle */}
+                <button
+                    className="md:hidden block"
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    style={{
+                        zIndex: 60,
+                        position: "relative",
+                        width: "40px",
+                        height: "40px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        background: "transparent",
+                        border: "none",
+                        color: "#fff",
+                        padding: 0,
+                    }}
+                    aria-label="Toggle menu"
+                >
+                    <div style={{ width: "24px", height: "18px", position: "relative" }}>
+                        <motion.span
+                            animate={mobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+                            style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "2px", background: "white", transformOrigin: "center" }}
+                        />
+                        <motion.span
+                            animate={mobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+                            style={{ position: "absolute", top: "8px", left: 0, width: "100%", height: "2px", background: "white" }}
+                        />
+                        <motion.span
+                            animate={mobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+                            style={{ position: "absolute", bottom: 0, left: 0, width: "100%", height: "2px", background: "white", transformOrigin: "center" }}
+                        />
+                    </div>
+                </button>
             </motion.nav>
+
+            {/* Mobile Menu Overlay */}
+            <motion.div
+                initial={{ opacity: 0, y: "-100%" }}
+                animate={mobileMenuOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: "-100%" }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                style={{
+                    position: "fixed",
+                    inset: 0,
+                    background: "#080b12",
+                    zIndex: 55,
+                    padding: "120px 24px 40px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "start",
+                    pointerEvents: mobileMenuOpen ? "auto" : "none",
+                }}
+            >
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "32px", width: "100%" }}>
+                    {navLinks.map((link, i) => (
+                        <motion.a
+                            key={link.label}
+                            href={link.href}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={mobileMenuOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                            transition={{ delay: 0.1 + i * 0.05, duration: 0.5 }}
+                            onClick={() => setMobileMenuOpen(false)}
+                            style={{
+                                fontFamily: "var(--font-mono)",
+                                fontSize: "16px",
+                                letterSpacing: "0.25em",
+                                color: "#fff",
+                                textDecoration: "none",
+                                padding: "12px",
+                                width: "100%",
+                                textAlign: "center",
+                                borderBottom: "1px solid rgba(255,255,255,0.05)",
+                            }}
+                        >
+                            {link.label}
+                        </motion.a>
+                    ))}
+
+                    <motion.a
+                        href="#contact"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={mobileMenuOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                        transition={{ delay: 0.3, duration: 0.5 }}
+                        onClick={() => setMobileMenuOpen(false)}
+                        style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            background: "#3B9EFF",
+                            color: "#fff",
+                            fontFamily: "var(--font-mono)",
+                            fontSize: "14px",
+                            fontWeight: 700,
+                            letterSpacing: "0.2em",
+                            padding: "16px 40px",
+                            borderRadius: "9999px",
+                            textDecoration: "none",
+                            marginTop: "24px",
+                            width: "100%",
+                            maxWidth: "280px",
+                        }}
+                    >
+                        INQUIRE
+                    </motion.a>
+                </div>
+            </motion.div>
         </header>
     );
 }

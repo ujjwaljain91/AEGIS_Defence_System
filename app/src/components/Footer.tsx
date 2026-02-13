@@ -18,13 +18,10 @@ export default function Footer() {
             style={{
                 background: "#080b12",
                 borderTop: "1px solid rgba(100,140,200,0.08)",
-                paddingTop: "80px",
-                paddingBottom: "48px",
-                paddingLeft: "24px",
-                paddingRight: "24px",
                 position: "relative",
                 overflow: "hidden",
             }}
+            className="pt-20 pb-12 px-6 md:px-12"
         >
             {/* Subtle top glow */}
             <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: "800px", height: "200px", background: "radial-gradient(ellipse, rgba(59,158,255,0.025) 0%, transparent 70%)", pointerEvents: "none" }} />
@@ -36,15 +33,10 @@ export default function Footer() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.1 }}
-                    style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 200px), 1fr))",
-                        gap: "48px",
-                        marginBottom: "80px",
-                    }}
+                    className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-20"
                 >
                     {/* Brand Column */}
-                    <motion.div variants={staggerItem} style={{ gridColumn: "span 1" }}>
+                    <motion.div variants={staggerItem} className="col-span-2 md:col-span-1">
                         <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
                             <motion.div
                                 whileHover={{ rotate: 360 }}

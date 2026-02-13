@@ -104,8 +104,8 @@ export default function EngineeringSection() {
                     width: "100%",
                     maxWidth: "1100px",
                     margin: "0 auto",
-                    padding: "160px 24px 180px",
                 }}
+                className="py-20 px-6 md:py-40 md:px-6"
             >
                 {/* ─── Section Header ─── */}
                 <div
@@ -190,7 +190,7 @@ export default function EngineeringSection() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.15 }}
-                    style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-5"
                 >
                     {capabilities.map((cap) => (
                         <motion.div
@@ -239,13 +239,7 @@ export default function EngineeringSection() {
                 </motion.div>
             </div>
 
-            <style jsx>{`
-        @media (max-width: 768px) {
-          div[style*="grid-template-columns: repeat(2"] {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
+
         </section>
     );
 }

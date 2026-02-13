@@ -9,9 +9,9 @@ export default function SpotlightCTA() {
             style={{
                 position: "relative",
                 background: "linear-gradient(180deg, #080b12 0%, #0c1625 50%, #080b12 100%)",
-                padding: "160px 24px 180px",
                 overflow: "hidden",
             }}
+            className="py-20 px-6 md:py-40 md:px-6"
         >
             {/* Large ambient glow */}
             <motion.div
@@ -61,7 +61,6 @@ export default function SpotlightCTA() {
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                     style={{
                         borderRadius: "32px",
-                        padding: "100px 48px",
                         textAlign: "center" as const,
                         position: "relative",
                         overflow: "hidden",
@@ -153,6 +152,7 @@ export default function SpotlightCTA() {
                             viewport={{ once: true }}
                             transition={{ duration: 0.7, delay: 0.6 }}
                             style={{ display: "flex", gap: "16px", flexWrap: "wrap" as const, justifyContent: "center" }}
+                            className="flex-col md:flex-row w-full md:w-auto"
                         >
                             <motion.a
                                 href="#"
