@@ -58,7 +58,6 @@ function AssetPanel({ asset, index }: { asset: typeof assets[number]; index: num
                 height: "100vh",
                 overflow: "hidden",
             }}
-            className="h-screen md:h-[100vh]"
         >
             {/* Video — scale parallax */}
             <motion.div style={{ scale: videoScale, position: "absolute", inset: 0 }}>
@@ -95,7 +94,7 @@ function AssetPanel({ asset, index }: { asset: typeof assets[number]; index: num
                     justifyContent: "center",
                     height: "100%",
                     textAlign: "center" as const,
-                    padding: "32px",
+                    padding: "24px",
                     y: contentY,
                 }}
             >
@@ -124,7 +123,7 @@ function AssetPanel({ asset, index }: { asset: typeof assets[number]; index: num
                     transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                     className="text-gradient"
                     style={{
-                        fontSize: "clamp(40px, 10vw, 88px)",
+                        fontSize: "clamp(32px, 8vw, 88px)",
                         fontWeight: 700,
                         lineHeight: 0.95,
                         fontFamily: "var(--font-mono)",
@@ -202,8 +201,8 @@ export default function ScrollytellingSection() {
                     alignItems: "center",
                     justifyContent: "center",
                     textAlign: "center" as const,
-                    paddingLeft: "32px",
-                    paddingRight: "32px",
+                    paddingLeft: "24px",
+                    paddingRight: "24px",
                 }}
             >
                 <motion.p

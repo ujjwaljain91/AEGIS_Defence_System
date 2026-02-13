@@ -18,10 +18,13 @@ export default function Footer() {
             style={{
                 background: "#080b12",
                 borderTop: "1px solid rgba(100,140,200,0.08)",
+                paddingTop: "80px",
+                paddingBottom: "48px",
+                paddingLeft: "24px",
+                paddingRight: "24px",
                 position: "relative",
                 overflow: "hidden",
             }}
-            className="pt-24 pb-12 px-8 md:px-12"
         >
             {/* Subtle top glow */}
             <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: "800px", height: "200px", background: "radial-gradient(ellipse, rgba(59,158,255,0.025) 0%, transparent 70%)", pointerEvents: "none" }} />
@@ -33,10 +36,15 @@ export default function Footer() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.1 }}
-                    className="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12 mb-20 text-center md:text-left"
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 200px), 1fr))",
+                        gap: "48px",
+                        marginBottom: "80px",
+                    }}
                 >
                     {/* Brand Column */}
-                    <motion.div variants={staggerItem} className="col-span-1 md:col-span-1 flex flex-col items-center md:items-start">
+                    <motion.div variants={staggerItem} style={{ gridColumn: "span 1" }}>
                         <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
                             <motion.div
                                 whileHover={{ rotate: 360 }}
@@ -129,16 +137,24 @@ export default function Footer() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, delay: 0.3 }}
-                    className="border-t border-[rgba(100,140,200,0.06)] pt-8 flex flex-col md:flex-row items-center justify-center md:justify-between gap-4"
+                    style={{
+                        borderTop: "1px solid rgba(100,140,200,0.06)",
+                        paddingTop: "32px",
+                        display: "flex",
+                        flexWrap: "wrap" as const,
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: "16px",
+                    }}
                 >
-                    <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.35em", color: "rgba(140,155,180,0.5)" }} className="text-center md:text-left">
+                    <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.35em", color: "rgba(140,155,180,0.5)" }}>
                         © 2026 AEGIS DEFENSE SYSTEMS. ALL RIGHTS RESERVED.
                     </p>
-                    <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.35em", color: "rgba(140,155,180,0.4)" }} className="text-center md:text-right">
+                    <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.35em", color: "rgba(140,155,180,0.4)" }}>
                         CLASSIFIED • DISTRIBUTION RESTRICTED
                     </p>
                 </motion.div>
             </div>
-        </footer >
+        </footer>
     );
 }

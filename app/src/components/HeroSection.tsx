@@ -97,8 +97,16 @@ export default function HeroSection() {
 
             {/* ─── Top Strip: LIVE FEED (left) + Commander (right) ─── */}
             <motion.div
-                className="absolute top-[80px] md:top-[100px] left-0 right-0 z-20 flex flex-col md:flex-row items-start justify-between px-8 md:px-12 pointer-events-none md:pointer-events-auto"
                 style={{
+                    position: "absolute",
+                    top: "100px",
+                    left: 0,
+                    right: 0,
+                    zIndex: 20,
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: "space-between",
+                    padding: "0 48px",
                     opacity: hudOpacity,
                 }}
             >
@@ -107,7 +115,6 @@ export default function HeroSection() {
                     initial={{ opacity: 0, x: -30, filter: "blur(10px)" }}
                     animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                     transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="mb-4 md:mb-0 pointer-events-auto"
                 >
                     <div
                         className="glass"
@@ -115,18 +122,18 @@ export default function HeroSection() {
                             display: "inline-flex",
                             alignItems: "center",
                             gap: "10px",
-                            padding: "8px 16px",
+                            padding: "10px 20px",
                             borderRadius: "9999px",
                         }}
                     >
                         <div
                             className="animate-pulse-dot"
-                            style={{ width: "6px", height: "6px", background: "#4ade80", borderRadius: "50%" }}
+                            style={{ width: "8px", height: "8px", background: "#4ade80", borderRadius: "50%" }}
                         />
                         <span
                             style={{
                                 fontFamily: "var(--font-mono)",
-                                fontSize: "10px",
+                                fontSize: "11px",
                                 letterSpacing: "0.35em",
                                 color: "rgba(229,229,229,0.8)",
                             }}
@@ -141,7 +148,6 @@ export default function HeroSection() {
                     initial={{ opacity: 0, x: 30, filter: "blur(10px)" }}
                     animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                     transition={{ duration: 0.8, delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="hidden md:block pointer-events-auto"
                 >
                     <div
                         className="glass"
@@ -162,8 +168,16 @@ export default function HeroSection() {
 
             {/* ─── Center Content: Main Typography ─── */}
             <motion.div
-                className="absolute inset-0 z-15 flex flex-col items-center justify-center text-center px-8 md:px-0"
                 style={{
+                    position: "absolute",
+                    inset: 0,
+                    zIndex: 15,
+                    display: "flex",
+                    flexDirection: "column" as const,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    textAlign: "center" as const,
+                    padding: "0 24px",
                     y: textY,
                     opacity: textOpacity,
                 }}
@@ -174,7 +188,7 @@ export default function HeroSection() {
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 0.8, delay: 0.1 }}
                     className="section-label"
-                    style={{ marginBottom: "16px" }}
+                    style={{ marginBottom: "32px" }}
                 >
                     AEGIS Defense Systems
                 </motion.p>
@@ -183,7 +197,7 @@ export default function HeroSection() {
                 <motion.h1
                     className="text-gradient"
                     style={{
-                        fontSize: "clamp(40px, 9vw, 120px)",
+                        fontSize: "clamp(48px, 10vw, 120px)",
                         fontWeight: 700,
                         lineHeight: 0.9,
                         letterSpacing: "-0.04em",
@@ -215,14 +229,14 @@ export default function HeroSection() {
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 0.8, delay: 0.6 }}
                     style={{
-                        marginTop: "24px",
-                        fontSize: "16px",
+                        marginTop: "32px",
+                        fontSize: "18px",
                         lineHeight: 1.7,
                         color: "rgba(210,210,210,0.75)",
+                        maxWidth: "440px",
                         letterSpacing: "0.04em",
                         textShadow: "0 2px 20px rgba(0,0,0,0.6)",
                     }}
-                    className="max-w-[320px] md:max-w-[440px] text-lg"
                 >
                     Integrated Air. Land. Sea. Tactical Systems.
                 </motion.p>
@@ -233,13 +247,12 @@ export default function HeroSection() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.85 }}
                     style={{
-                        marginTop: "40px",
+                        marginTop: "48px",
                         display: "flex",
                         gap: "16px",
                         flexWrap: "wrap" as const,
                         justifyContent: "center",
                     }}
-                    className="flex-col md:flex-row w-full md:w-auto px-8 md:px-0"
                 >
                     <motion.a
                         href="#systems"
@@ -289,9 +302,12 @@ export default function HeroSection() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 1.1 }}
                     style={{
-                        marginTop: "32px",
+                        marginTop: "64px",
+                        display: "flex",
+                        gap: "48px",
+                        flexWrap: "wrap" as const,
+                        justifyContent: "center",
                     }}
-                    className="flex flex-wrap justify-center gap-6 md:gap-12"
                 >
                     {[
                         { value: 47, suffix: "+", label: "ALLIED NATIONS" },
@@ -304,13 +320,12 @@ export default function HeroSection() {
                                 <p
                                     style={{
                                         fontFamily: "var(--font-mono)",
-                                        fontSize: "20px",
+                                        fontSize: "28px",
                                         fontWeight: 700,
                                         color: "#fff",
                                         lineHeight: 1,
                                         fontVariantNumeric: "tabular-nums",
                                     }}
-                                    className="md:text-[28px]"
                                 >
                                     {counter.count}{stat.suffix}
                                 </p>
@@ -336,8 +351,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={{ duration: 0.7, delay: 1.0 }}
-                className="absolute bottom-6 left-6 md:bottom-12 md:left-12 z-20 hidden md:block"
-                style={{ opacity: hudOpacity as unknown as number }}
+                style={{ position: "absolute", bottom: "48px", left: "48px", zIndex: 20, opacity: hudOpacity as unknown as number }}
             >
                 <div
                     className="glass"
@@ -371,7 +385,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={{ duration: 0.8, delay: 1.2 }}
-                className="absolute bottom-6 right-6 md:bottom-12 md:right-12 z-20 hidden md:block" // Hidden on mobile
+                style={{ position: "absolute", bottom: "48px", right: "48px", zIndex: 20 }}
             >
                 <motion.div
                     className="glass"
@@ -425,7 +439,17 @@ export default function HeroSection() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7, delay: 1.5 }}
-                className="absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
+                style={{
+                    position: "absolute",
+                    bottom: "48px",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    zIndex: 20,
+                    display: "flex",
+                    flexDirection: "column" as const,
+                    alignItems: "center",
+                    gap: "8px",
+                }}
             >
                 <motion.span
                     animate={{ opacity: [0.3, 0.7, 0.3] }}
