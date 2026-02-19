@@ -6,61 +6,82 @@ export default function SpotlightCTA() {
     return (
         <section
             id="contact"
+            className="angled-divider-top"
             style={{
                 position: "relative",
-                background: "linear-gradient(180deg, #080b12 0%, #0c1625 50%, #080b12 100%)",
-                padding: "160px 24px 180px",
+                background: "radial-gradient(ellipse at center, #0e1520 0%, #080b12 70%)",
+                padding: "200px 24px 180px",
                 overflow: "hidden",
             }}
         >
-            {/* Large ambient glow */}
+            {/* Tactical grid */}
+            <div className="tactical-grid animate-grid" style={{ position: "absolute", inset: 0, opacity: 0.08, pointerEvents: "none" }} />
+
+            {/* Scan line */}
+            <div className="animate-scan" style={{ position: "absolute", left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent 0%, rgba(59,158,255,0.1) 20%, rgba(59,158,255,0.18) 50%, rgba(59,158,255,0.1) 80%, transparent 100%)", pointerEvents: "none", zIndex: 5 }} />
+
+            {/* Ambient glow — centered */}
             <motion.div
                 animate={{
-                    opacity: [0.6, 1, 0.6],
-                    scale: [0.95, 1.05, 0.95],
+                    opacity: [0.5, 0.8, 0.5],
+                    scale: [0.96, 1.04, 0.96],
                 }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
                 style={{
                     position: "absolute",
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
-                    width: "1000px",
-                    height: "800px",
-                    background: "radial-gradient(ellipse, rgba(59,158,255,0.09) 0%, transparent 55%)",
+                    width: "800px",
+                    height: "600px",
+                    background: "radial-gradient(ellipse, rgba(59,158,255,0.07) 0%, transparent 55%)",
                     pointerEvents: "none",
                     filter: "blur(60px)",
                 }}
             />
 
-            {/* Corner decorative elements */}
+            {/* Corner accents */}
             <motion.div
                 initial={{ height: 0, opacity: 0 }}
-                whileInView={{ height: 80, opacity: 1 }}
+                whileInView={{ height: 100, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: 0.3 }}
-                style={{ position: "absolute", top: "15%", left: "8%", width: "1px", background: "linear-gradient(to bottom, rgba(59,158,255,0.3), transparent)", pointerEvents: "none" }}
+                style={{ position: "absolute", top: "12%", left: "6%", width: "1px", background: "linear-gradient(to bottom, rgba(59,158,255,0.35), transparent)", pointerEvents: "none" }}
+            />
+            <motion.div
+                initial={{ width: 0, opacity: 0 }}
+                whileInView={{ width: 60, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                style={{ position: "absolute", top: "12%", left: "6%", height: "1px", background: "linear-gradient(to right, rgba(59,158,255,0.35), transparent)", pointerEvents: "none" }}
             />
             <motion.div
                 initial={{ height: 0, opacity: 0 }}
-                whileInView={{ height: 80, opacity: 1 }}
+                whileInView={{ height: 100, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: 0.5 }}
-                style={{ position: "absolute", bottom: "15%", right: "8%", width: "1px", background: "linear-gradient(to top, rgba(59,158,255,0.3), transparent)", pointerEvents: "none" }}
+                style={{ position: "absolute", bottom: "12%", right: "6%", width: "1px", background: "linear-gradient(to top, rgba(59,158,255,0.35), transparent)", pointerEvents: "none" }}
+            />
+            <motion.div
+                initial={{ width: 0, opacity: 0 }}
+                whileInView={{ width: 60, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.7 }}
+                style={{ position: "absolute", bottom: "12%", right: "6%", height: "1px", background: "linear-gradient(to left, rgba(59,158,255,0.35), transparent)", pointerEvents: "none" }}
             />
 
-            {/* Top/bottom fades */}
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "100px", background: "linear-gradient(to bottom, #080b12, transparent)", pointerEvents: "none", zIndex: 5 }} />
-            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "100px", background: "linear-gradient(to top, #080b12, transparent)", pointerEvents: "none", zIndex: 5 }} />
+            {/* Top / bottom fades */}
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "120px", background: "linear-gradient(to bottom, #080b12, transparent)", pointerEvents: "none", zIndex: 5 }} />
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "120px", background: "linear-gradient(to top, #080b12, transparent)", pointerEvents: "none", zIndex: 5 }} />
 
-            <div style={{ maxWidth: "900px", margin: "0 auto", position: "relative", zIndex: 10 }}>
+            <div style={{ maxWidth: "1100px", margin: "0 auto", position: "relative", zIndex: 10 }}>
                 <motion.div
                     initial={{ opacity: 0, y: 50, scale: 0.96, filter: "blur(12px)" }}
                     whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                     style={{
-                        borderRadius: "32px",
+                        borderRadius: "4px",
                         padding: "100px 48px",
                         textAlign: "center" as const,
                         position: "relative",
@@ -68,30 +89,26 @@ export default function SpotlightCTA() {
                         display: "flex",
                         flexDirection: "column" as const,
                         alignItems: "center",
-                        background: "rgba(0,122,255,0.02)",
-                        backdropFilter: "blur(40px)",
-                        border: "1px solid rgba(0,122,255,0.1)",
-                        boxShadow: "0 0 100px rgba(0,122,255,0.03), inset 0 1px 0 rgba(255,255,255,0.04)",
+                        background: "rgba(255,255,255,0.02)",
+                        backdropFilter: "blur(12px)",
+                        WebkitBackdropFilter: "blur(12px)",
+                        border: "1px solid rgba(255,255,255,0.05)",
+                        boxShadow: "0 0 80px rgba(0,122,255,0.03), inset 0 1px 0 rgba(255,255,255,0.04)",
                     }}
                 >
                     {/* Inner top glow */}
-                    <div style={{ position: "absolute", top: "-80px", left: "50%", transform: "translateX(-50%)", width: "500px", height: "350px", background: "radial-gradient(ellipse, rgba(59,158,255,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
+                    <div style={{ position: "absolute", top: "-80px", left: "50%", transform: "translateX(-50%)", width: "500px", height: "300px", background: "radial-gradient(ellipse, rgba(59,158,255,0.06) 0%, transparent 70%)", pointerEvents: "none" }} />
 
-                    {/* Decorative rings — breathing animation */}
+                    {/* Breathing ring */}
                     <motion.div
-                        animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.5, 0.3] }}
-                        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                        style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "400px", height: "400px", borderRadius: "50%", border: "1px solid rgba(59,158,255,0.04)", pointerEvents: "none" }}
-                    />
-                    <motion.div
-                        animate={{ scale: [1, 1.03, 1], opacity: [0.2, 0.4, 0.2] }}
-                        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                        style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "600px", height: "600px", borderRadius: "50%", border: "1px solid rgba(59,158,255,0.03)", pointerEvents: "none" }}
+                        animate={{ scale: [1, 1.04, 1], opacity: [0.25, 0.45, 0.25] }}
+                        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                        style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "450px", height: "450px", borderRadius: "50%", border: "1px solid rgba(59,158,255,0.04)", pointerEvents: "none" }}
                     />
 
                     {/* Content */}
                     <div style={{ position: "relative", zIndex: 10 }}>
-                        {/* Decorative accent line */}
+                        {/* Accent line */}
                         <motion.div
                             initial={{ scaleX: 0 }}
                             whileInView={{ scaleX: 1 }}
@@ -100,7 +117,7 @@ export default function SpotlightCTA() {
                             style={{ width: "60px", height: "2px", background: "linear-gradient(90deg, transparent, #3B9EFF, transparent)", margin: "0 auto 40px", transformOrigin: "center" }}
                         />
 
-                        {/* Decorative icon */}
+                        {/* Icon */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.5, rotateZ: -45 }}
                             whileInView={{ opacity: 1, scale: 1, rotateZ: 0 }}
@@ -154,22 +171,50 @@ export default function SpotlightCTA() {
                             transition={{ duration: 0.7, delay: 0.6 }}
                             style={{ display: "flex", gap: "16px", flexWrap: "wrap" as const, justifyContent: "center" }}
                         >
+                            {/* Primary CTA — sharp, glitch hover */}
                             <motion.a
                                 href="#"
-                                whileHover={{ scale: 1.05, boxShadow: "0 0 60px rgba(0,122,255,0.45)" }}
+                                className="btn-glitch"
+                                whileHover={{ scale: 1.03, boxShadow: "0 0 60px rgba(0,122,255,0.45)" }}
                                 whileTap={{ scale: 0.97 }}
                                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                                style={{ display: "inline-block", background: "#3B9EFF", color: "#fff", fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 700, letterSpacing: "0.25em", padding: "18px 48px", borderRadius: "9999px", textDecoration: "none", boxShadow: "0 0 30px rgba(59,158,255,0.25)" }}
+                                style={{
+                                    display: "inline-block",
+                                    background: "#3B9EFF",
+                                    color: "#fff",
+                                    fontFamily: "var(--font-mono)",
+                                    fontSize: "12px",
+                                    fontWeight: 700,
+                                    letterSpacing: "0.25em",
+                                    padding: "18px 48px",
+                                    borderRadius: "0px",
+                                    textDecoration: "none",
+                                    boxShadow: "0 0 30px rgba(59,158,255,0.25)",
+                                }}
                             >
                                 REQUEST BRIEFING
                             </motion.a>
+
+                            {/* Secondary CTA — sharp */}
                             <motion.a
                                 href="#"
-                                className="glass"
-                                whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.08)" }}
+                                whileHover={{ scale: 1.03, backgroundColor: "rgba(255,255,255,0.08)" }}
                                 whileTap={{ scale: 0.97 }}
                                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                                style={{ display: "inline-block", color: "rgba(255,255,255,0.6)", fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 700, letterSpacing: "0.25em", padding: "18px 40px", borderRadius: "9999px", textDecoration: "none" }}
+                                style={{
+                                    display: "inline-block",
+                                    color: "rgba(255,255,255,0.6)",
+                                    fontFamily: "var(--font-mono)",
+                                    fontSize: "12px",
+                                    fontWeight: 700,
+                                    letterSpacing: "0.25em",
+                                    padding: "18px 40px",
+                                    borderRadius: "0px",
+                                    textDecoration: "none",
+                                    border: "1px solid rgba(255,255,255,0.08)",
+                                    background: "rgba(120,160,220,0.04)",
+                                    backdropFilter: "blur(12px)",
+                                }}
                             >
                                 VIEW SYSTEMS
                             </motion.a>

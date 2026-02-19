@@ -17,6 +17,32 @@ const cardVariant = {
     },
 };
 
+/* ─── Tactical glyph SVGs ─── */
+const GlyphHexagon = () => (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ flexShrink: 0, marginTop: "5px" }}>
+        <path d="M6 0.5L11 3.25V8.75L6 11.5L1 8.75V3.25L6 0.5Z" stroke="#3B9EFF" strokeWidth="1" fill="rgba(59,158,255,0.08)" />
+    </svg>
+);
+
+const GlyphCrosshair = () => (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ flexShrink: 0, marginTop: "5px" }}>
+        <circle cx="6" cy="6" r="4.5" stroke="#3B9EFF" strokeWidth="0.8" />
+        <circle cx="6" cy="6" r="1.5" fill="#3B9EFF" />
+        <line x1="6" y1="0" x2="6" y2="2.5" stroke="#3B9EFF" strokeWidth="0.8" />
+        <line x1="6" y1="9.5" x2="6" y2="12" stroke="#3B9EFF" strokeWidth="0.8" />
+        <line x1="0" y1="6" x2="2.5" y2="6" stroke="#3B9EFF" strokeWidth="0.8" />
+        <line x1="9.5" y1="6" x2="12" y2="6" stroke="#3B9EFF" strokeWidth="0.8" />
+    </svg>
+);
+
+const GlyphChevron = () => (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ flexShrink: 0, marginTop: "5px" }}>
+        <path d="M4 2L8 6L4 10" stroke="#3B9EFF" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+);
+
+const glyphs = [GlyphHexagon, GlyphCrosshair, GlyphChevron];
+
 const tiers = [
     {
         name: "Research Division",
@@ -31,6 +57,7 @@ const tiers = [
         ],
         featured: false,
         cta: "APPLY FOR ACCESS",
+        glyphIndex: 0,
     },
     {
         name: "Defense Contractor",
@@ -46,6 +73,7 @@ const tiers = [
         ],
         featured: true,
         cta: "REQUEST CLEARANCE",
+        glyphIndex: 1,
     },
     {
         name: "Enterprise Security",
@@ -60,26 +88,31 @@ const tiers = [
         ],
         featured: false,
         cta: "CONTACT COMMAND",
+        glyphIndex: 2,
     },
 ];
 
 export default function StrategicTiers() {
+    /* Put featured tier first for the bento layout (spans 2 rows on left) */
+    const featured = tiers.find((t) => t.featured)!;
+    const others = tiers.filter((t) => !t.featured);
+
     return (
         <section
             id="tiers"
             style={{
                 position: "relative",
-                background: "linear-gradient(180deg, #080b12 0%, #101828 40%, #101828 60%, #080b12 100%)",
+                background: "#080b12",
                 overflow: "hidden",
                 padding: "160px 24px 180px",
             }}
         >
-            {/* Atmospheric elements */}
-            <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "900px", height: "900px", borderRadius: "50%", background: "radial-gradient(circle, rgba(59,158,255,0.08) 0%, transparent 60%)", pointerEvents: "none", filter: "blur(40px)" }} />
+            {/* Atmospheric radial glow */}
+            <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "900px", height: "900px", borderRadius: "50%", background: "radial-gradient(circle, rgba(59,158,255,0.06) 0%, transparent 60%)", pointerEvents: "none", filter: "blur(40px)" }} />
 
             {/* Decorative horizontal lines */}
-            <div style={{ position: "absolute", top: "25%", left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent, rgba(59,158,255,0.1), transparent)", pointerEvents: "none" }} />
-            <div style={{ position: "absolute", top: "75%", left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent, rgba(59,158,255,0.07), transparent)", pointerEvents: "none" }} />
+            <div style={{ position: "absolute", top: "25%", left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent, rgba(59,158,255,0.08), transparent)", pointerEvents: "none" }} />
+            <div style={{ position: "absolute", top: "75%", left: 0, right: 0, height: "1px", background: "linear-gradient(90deg, transparent, rgba(59,158,255,0.06), transparent)", pointerEvents: "none" }} />
 
             {/* Top/bottom fades */}
             <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "100px", background: "linear-gradient(to bottom, #080b12, transparent)", pointerEvents: "none", zIndex: 5 }} />
@@ -144,130 +177,213 @@ export default function StrategicTiers() {
                     />
                 </div>
 
-                {/* ─── Cards — stagger ─── */}
+                {/* ─── Bento Grid ─── */}
                 <motion.div
                     variants={staggerContainer}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.1 }}
-                    style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "20px", alignItems: "start" }}
+                    style={{
+                        display: "grid",
+                        gridTemplateColumns: "1.2fr 1fr",
+                        gridTemplateRows: "1fr 1fr",
+                        gap: "20px",
+                        alignItems: "stretch",
+                    }}
                 >
-                    {tiers.map((tier) => (
+                    {/* Featured card — spans 2 rows on left */}
+                    <motion.div
+                        variants={cardVariant}
+                        whileHover={{ y: -6, boxShadow: "0 0 100px rgba(0,122,255,0.1), 0 16px 40px rgba(0,0,0,0.3)" }}
+                        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                        className="corner-brackets"
+                        style={{
+                            gridRow: "1 / 3",
+                            borderRadius: "4px",
+                            padding: "48px 40px 40px",
+                            display: "flex",
+                            flexDirection: "column" as const,
+                            position: "relative" as const,
+                            overflow: "visible",
+                            cursor: "default",
+                            background: "rgba(0,122,255,0.04)",
+                            backdropFilter: "blur(12px)",
+                            WebkitBackdropFilter: "blur(12px)",
+                            border: "1px solid rgba(0,122,255,0.2)",
+                            boxShadow: "0 0 80px rgba(0,122,255,0.06), inset 0 1px 0 rgba(0,122,255,0.1)",
+                        }}
+                    >
+                        {/* Top glow */}
+                        <div style={{ position: "absolute", top: "-60px", left: "50%", transform: "translateX(-50%)", width: "300px", height: "200px", background: "radial-gradient(ellipse, rgba(59,158,255,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
+
+                        {/* Recommended badge */}
                         <motion.div
-                            key={tier.name}
-                            variants={cardVariant}
-                            whileHover={
-                                !tier.featured
-                                    ? { y: -6, borderColor: "rgba(0,122,255,0.15)", boxShadow: "0 16px 40px rgba(0,0,0,0.3)" }
-                                    : { y: -6, boxShadow: "0 0 100px rgba(0,122,255,0.1), 0 16px 40px rgba(0,0,0,0.3)" }
-                            }
-                            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                            style={{
-                                borderRadius: "24px",
-                                padding: "44px 36px 36px",
-                                display: "flex",
-                                flexDirection: "column" as const,
-                                position: "relative" as const,
-                                overflow: "visible",
-                                cursor: "default",
-                                ...(tier.featured
-                                    ? {
-                                        background: "rgba(0,122,255,0.04)",
-                                        backdropFilter: "blur(40px)",
-                                        border: "1px solid rgba(0,122,255,0.2)",
-                                        boxShadow: "0 0 80px rgba(0,122,255,0.06), inset 0 1px 0 rgba(0,122,255,0.1)",
-                                    }
-                                    : {
-                                        background: "rgba(255,255,255,0.02)",
-                                        backdropFilter: "blur(20px)",
-                                        border: "1px solid rgba(100,140,200,0.1)",
-                                    }),
-                            }}
+                            initial={{ opacity: 0, y: -8, scale: 0.8 }}
+                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.5, type: "spring", stiffness: 300, damping: 20 }}
+                            style={{ position: "absolute", top: "-13px", left: "40px", background: "#3B9EFF", color: "#fff", fontFamily: "var(--font-mono)", fontSize: "9px", fontWeight: 700, letterSpacing: "0.3em", padding: "6px 20px", borderRadius: "0px", whiteSpace: "nowrap" as const, boxShadow: "0 4px 20px rgba(59,158,255,0.3)" }}
                         >
-                            {/* Featured card top glow */}
-                            {tier.featured && (
-                                <div style={{ position: "absolute", top: "-60px", left: "50%", transform: "translateX(-50%)", width: "300px", height: "200px", background: "radial-gradient(ellipse, rgba(59,158,255,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
-                            )}
+                            RECOMMENDED
+                        </motion.div>
 
-                            {/* Featured badge */}
-                            {tier.featured && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: -8, scale: 0.8 }}
-                                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: 0.5, type: "spring", stiffness: 300, damping: 20 }}
-                                    style={{ position: "absolute", top: "-13px", left: "50%", transform: "translateX(-50%)", background: "#3B9EFF", color: "#fff", fontFamily: "var(--font-mono)", fontSize: "9px", fontWeight: 700, letterSpacing: "0.3em", padding: "6px 20px", borderRadius: "9999px", whiteSpace: "nowrap" as const, boxShadow: "0 4px 20px rgba(59,158,255,0.3)" }}
-                                >
-                                    RECOMMENDED
-                                </motion.div>
-                            )}
+                        {/* Clearance */}
+                        <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.4em", color: "rgba(59,158,255,0.7)", marginBottom: "16px" }}>
+                            CLEARANCE {featured.clearance}
+                        </p>
 
-                            {/* Clearance */}
-                            <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.4em", color: tier.featured ? "rgba(59,158,255,0.7)" : "rgba(59,158,255,0.45)", marginBottom: "16px" }}>
-                                CLEARANCE {tier.clearance}
-                            </p>
+                        <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "28px", fontWeight: 800, color: "#fff", lineHeight: 1.2, marginBottom: "12px", letterSpacing: "-0.01em" }}>
+                            {featured.name}
+                        </h3>
 
-                            <h3 style={{ fontFamily: "var(--font-mono)", fontSize: "22px", fontWeight: 700, color: "#fff", lineHeight: 1.3, marginBottom: "10px" }}>
-                                {tier.name}
-                            </h3>
+                        <p style={{ fontSize: "15px", lineHeight: 1.7, color: "rgba(180,190,210,0.65)", marginBottom: "32px", maxWidth: "360px" }}>
+                            {featured.description}
+                        </p>
 
-                            <p style={{ fontSize: "14px", lineHeight: 1.7, color: "rgba(180,190,210,0.65)", marginBottom: "28px" }}>
-                                {tier.description}
-                            </p>
+                        <div style={{ width: "100%", height: "1px", background: "linear-gradient(90deg, transparent, rgba(59,158,255,0.2), transparent)", marginBottom: "32px" }} />
 
-                            <div style={{ width: "100%", height: "1px", background: tier.featured ? "linear-gradient(90deg, transparent, rgba(59,158,255,0.2), transparent)" : "rgba(100,140,200,0.08)", marginBottom: "28px" }} />
-
-                            <ul style={{ listStyle: "none", padding: 0, margin: "0 0 36px", flex: 1 }}>
-                                {tier.features.map((feature, fi) => (
+                        <ul style={{ listStyle: "none", padding: 0, margin: "0 0 40px", flex: 1 }}>
+                            {featured.features.map((feature, fi) => {
+                                const Glyph = glyphs[featured.glyphIndex];
+                                return (
                                     <motion.li
                                         key={feature}
                                         initial={{ opacity: 0, x: -12 }}
                                         whileInView={{ opacity: 1, x: 0 }}
                                         viewport={{ once: true }}
                                         transition={{ duration: 0.4, delay: 0.6 + fi * 0.06 }}
-                                        style={{ display: "flex", alignItems: "flex-start", gap: "12px", marginBottom: "14px" }}
+                                        style={{ display: "flex", alignItems: "flex-start", gap: "10px", marginBottom: "16px" }}
                                     >
-                                        <span style={{ color: "#3B9EFF", fontSize: "13px", lineHeight: "22px", flexShrink: 0 }}>✓</span>
-                                        <span style={{ fontSize: "14px", lineHeight: "22px", color: "rgba(200,210,225,0.75)" }}>{feature}</span>
+                                        <Glyph />
+                                        <span style={{ fontFamily: "var(--font-data)", fontSize: "13px", lineHeight: "22px", color: "rgba(200,210,225,0.8)", letterSpacing: "0.02em" }}>{feature}</span>
                                     </motion.li>
-                                ))}
-                            </ul>
+                                );
+                            })}
+                        </ul>
 
-                            <motion.a
-                                href="#contact"
-                                whileHover={{ scale: 1.03 }}
-                                whileTap={{ scale: 0.98 }}
-                                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                        <motion.a
+                            href="#contact"
+                            className="btn-glitch"
+                            whileHover={{ scale: 1.03 }}
+                            whileTap={{ scale: 0.98 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                            style={{
+                                display: "block",
+                                width: "100%",
+                                textAlign: "center" as const,
+                                fontFamily: "var(--font-mono)",
+                                fontSize: "11px",
+                                fontWeight: 700,
+                                letterSpacing: "0.2em",
+                                padding: "18px 24px",
+                                borderRadius: "0px",
+                                textDecoration: "none",
+                                background: "#3B9EFF",
+                                color: "#fff",
+                                boxShadow: "0 4px 20px rgba(59,158,255,0.25)",
+                            }}
+                        >
+                            {featured.cta}
+                        </motion.a>
+                    </motion.div>
+
+                    {/* Right column — stacked cards */}
+                    {others.map((tier) => {
+                        const Glyph = glyphs[tier.glyphIndex];
+                        return (
+                            <motion.div
+                                key={tier.name}
+                                variants={cardVariant}
+                                whileHover={{ y: -6, borderColor: "rgba(0,122,255,0.15)", boxShadow: "0 16px 40px rgba(0,0,0,0.3)" }}
+                                transition={{ type: "spring", stiffness: 300, damping: 25 }}
                                 style={{
-                                    display: "block",
-                                    width: "100%",
-                                    textAlign: "center" as const,
-                                    fontFamily: "var(--font-mono)",
-                                    fontSize: "11px",
-                                    fontWeight: 700,
-                                    letterSpacing: "0.2em",
-                                    padding: "16px 24px",
-                                    borderRadius: "9999px",
-                                    textDecoration: "none",
-                                    ...(tier.featured
-                                        ? { background: "#3B9EFF", color: "#fff", boxShadow: "0 4px 20px rgba(59,158,255,0.25)" }
-                                        : { background: "rgba(120,160,220,0.04)", color: "rgba(255,255,255,0.6)", border: "1px solid rgba(100,140,200,0.1)" }),
+                                    borderRadius: "4px",
+                                    padding: "36px 32px 32px",
+                                    display: "flex",
+                                    flexDirection: "column" as const,
+                                    position: "relative" as const,
+                                    overflow: "visible",
+                                    cursor: "default",
+                                    background: "rgba(255,255,255,0.02)",
+                                    backdropFilter: "blur(12px)",
+                                    WebkitBackdropFilter: "blur(12px)",
+                                    border: "1px solid rgba(255,255,255,0.05)",
                                 }}
                             >
-                                {tier.cta}
-                            </motion.a>
-                        </motion.div>
-                    ))}
+                                {/* Subtile card glow */}
+                                <div style={{ position: "absolute", top: "-30px", left: "50%", transform: "translateX(-50%)", width: "200px", height: "100px", background: "radial-gradient(ellipse, rgba(0,122,255,0.03) 0%, transparent 70%)", pointerEvents: "none" }} />
+
+                                {/* Clearance */}
+                                <p style={{ fontFamily: "var(--font-mono)", fontSize: "10px", letterSpacing: "0.4em", color: "rgba(59,158,255,0.45)", marginBottom: "12px" }}>
+                                    CLEARANCE {tier.clearance}
+                                </p>
+
+                                <h3 style={{ fontFamily: "var(--font-sans)", fontSize: "22px", fontWeight: 800, color: "#fff", lineHeight: 1.3, marginBottom: "8px", letterSpacing: "-0.01em" }}>
+                                    {tier.name}
+                                </h3>
+
+                                <p style={{ fontSize: "13px", lineHeight: 1.7, color: "rgba(180,190,210,0.6)", marginBottom: "20px" }}>
+                                    {tier.description}
+                                </p>
+
+                                <div style={{ width: "100%", height: "1px", background: "rgba(100,140,200,0.08)", marginBottom: "20px" }} />
+
+                                <ul style={{ listStyle: "none", padding: 0, margin: "0 0 24px", flex: 1 }}>
+                                    {tier.features.map((feature, fi) => (
+                                        <motion.li
+                                            key={feature}
+                                            initial={{ opacity: 0, x: -12 }}
+                                            whileInView={{ opacity: 1, x: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ duration: 0.4, delay: 0.6 + fi * 0.06 }}
+                                            style={{ display: "flex", alignItems: "flex-start", gap: "10px", marginBottom: "12px" }}
+                                        >
+                                            <Glyph />
+                                            <span style={{ fontFamily: "var(--font-data)", fontSize: "13px", lineHeight: "22px", color: "rgba(200,210,225,0.7)", letterSpacing: "0.02em" }}>{feature}</span>
+                                        </motion.li>
+                                    ))}
+                                </ul>
+
+                                <motion.a
+                                    href="#contact"
+                                    whileHover={{ scale: 1.03 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                                    style={{
+                                        display: "block",
+                                        width: "100%",
+                                        textAlign: "center" as const,
+                                        fontFamily: "var(--font-mono)",
+                                        fontSize: "11px",
+                                        fontWeight: 700,
+                                        letterSpacing: "0.2em",
+                                        padding: "16px 24px",
+                                        borderRadius: "0px",
+                                        textDecoration: "none",
+                                        background: "rgba(120,160,220,0.04)",
+                                        color: "rgba(255,255,255,0.6)",
+                                        border: "1px solid rgba(100,140,200,0.1)",
+                                    }}
+                                >
+                                    {tier.cta}
+                                </motion.a>
+                            </motion.div>
+                        );
+                    })}
                 </motion.div>
             </div>
 
             <style jsx>{`
-        @media (max-width: 900px) {
-          div[style*="grid-template-columns: repeat(3"] {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
+                @media (max-width: 900px) {
+                    div[style*="grid-template-columns: 1.2fr"] {
+                        grid-template-columns: 1fr !important;
+                        grid-template-rows: auto !important;
+                    }
+                    div[style*="grid-template-columns: 1.2fr"] > div:first-child {
+                        grid-row: auto !important;
+                    }
+                }
+            `}</style>
         </section>
     );
 }

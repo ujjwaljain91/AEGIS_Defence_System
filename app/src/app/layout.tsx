@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Space_Mono, Rajdhani } from "next/font/google";
+import { Space_Mono, Rajdhani, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
 const spaceMono = Space_Mono({
@@ -13,6 +13,13 @@ const rajdhani = Rajdhani({
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-rajdhani",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+  variable: "--font-jetbrains",
   display: "swap",
 });
 
@@ -30,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceMono.variable} ${rajdhani.variable} antialiased`}
+        className={`${spaceMono.variable} ${rajdhani.variable} ${jetbrainsMono.variable} antialiased`}
       >
         {children}
       </body>
